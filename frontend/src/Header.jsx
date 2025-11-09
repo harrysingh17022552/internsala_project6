@@ -60,8 +60,8 @@ export default function Header({ size }) {
           </div>
         </div>
         <div className="relative flex items-center justify-center">
-          <FaCartShopping className="text-4xl"/>
-          <strong className="text-red-800 absolute -top-3 text-xl">1</strong>
+          <FaCartShopping className="text-4xl text-green-500"/>
+          <p className="text-white absolute -top-3 text-xl font-extrabold">1</p>
         </div>
       </div>
     </header>
