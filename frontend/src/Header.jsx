@@ -60,12 +60,15 @@ export default function Header({ size }) {
             {userInfo.lname[0]}
           </div>
         </div>
-        <div className="relative flex items-center justify-center">
+        <Link
+          to={"/cart"}
+          className="relative flex items-center justify-center"
+        >
           <FaCartShopping className="text-4xl text-green-500 cursor-pointer" />
           <p className="text-white absolute -top-3 text-xl font-extrabold">
             {cart.length}
           </p>
-        </div>
+        </Link>
       </div>
     </header>
   );

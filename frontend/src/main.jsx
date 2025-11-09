@@ -8,6 +8,7 @@ import AddBook from "./component/AddBook.jsx";
 import BrowseBooks from "./component/BrowseBooks.jsx";
 import BookCategory from "./component/BookCategory";
 import BookDetails from "./component/BookDetails.jsx";
+import Cart from "./component/Cart.jsx";
 import Er404 from "./ErrorComponent/Er404.jsx";
 
 const RootProvider = () => {
@@ -34,7 +35,14 @@ const RootProvider = () => {
             <Er404 message="Hey, this kind of Book does not exist" />
           ),
         },
-        { path: "*", element: <Er404 message="Hey, this page is not available" /> },
+        {
+          path: "cart",
+          element: <Cart />,
+        },
+        {
+          path: "*",
+          element: <Er404 message="Hey, this page is not available" />,
+        },
       ],
     },
   ]);
