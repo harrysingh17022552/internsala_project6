@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: [],
+    items: window.localStorage.getItem("cartItem")
+      ? JSON.parse(window.localStorage.getItem("cartItem"))
+      : [],
   },
   reducers: {
     addItem: (state, action) => {
@@ -16,9 +18,11 @@ const cartSlice = createSlice({
             }
           }))
         : state.items.push(action.payload);
+      window.localStorage.setItem("cartItem", JSON.stringify(state.items));
     },
     removeItem: (state, action) => {
       state.items = state.items.filter((item) => item.id != action.payload.id);
+      window.localStorage.setItem("cartItem", JSON.stringify(state.items));
     },
     updateItem: (state, action) => {
       if (action.payload.type == "inc") {
@@ -42,9 +46,11 @@ const cartSlice = createSlice({
           }
         });
       }
+      window.localStorage.setItem("cartItem", JSON.stringify(state.items));
     },
     clearCart: (state, action) => {
       state.items = [];
+      window.localStorage.setItem("cartItem", JSON.stringify(state.items));
     },
   },
 });
