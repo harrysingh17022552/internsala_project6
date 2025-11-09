@@ -11,7 +11,7 @@ export default function Cart() {
   return (
     <section className="flex flex-col w-full gap-8 p-4">
       <h1 className="text-center text-4xl">Cart Item's</h1>
-      <article className="flex flex-col gap-4 w-full md:w-[75%] lg:w-1/2">
+      <article className="flex flex-col gap-4 w-full md:w-[75%] xl:w-1/2 self-center">
         {cartItem.length > 0 ? (
           cartItem.map((item, index) => (
             <article
@@ -20,7 +20,7 @@ export default function Cart() {
             >
               <div className="flex gap-4 justify-start">
                 <img
-                  className="w-[150px] object-contain rounded-md"
+                  className="self-start sm:self-center w-[150px] object-contain rounded-md"
                   src={item.bookimage}
                   alt={item.bookname}
                   onError={(e) => {
@@ -29,12 +29,12 @@ export default function Cart() {
                     )}&font=montserrat`;
                   }}
                 />
-                <div className="flex  flex-col justify-around gap-2">
+                <div className="flex  flex-col justify-around gap-2 p-2">
                   <div
                     className="flex flex-col
                 "
                   >
-                    <h2 className="text-2xl">{item.bookname}</h2>
+                    <h2 className="text-xl sm:text-3xl font-bold">{item.bookname}</h2>
                     <h4>{item.booktitle}</h4>
                   </div>
                   <p>
@@ -45,7 +45,7 @@ export default function Cart() {
                     <strong>Published on : </strong>
                     <span>{item.bookpublished}</span>
                   </p>
-                  <div className="flex gap-4 items-center">
+                  <div className="flex gap-4 items-center flex-wrap">
                     <p>
                       <strong>Price : </strong>
                       <span>{item.bookprice * item.quantity}</span>
