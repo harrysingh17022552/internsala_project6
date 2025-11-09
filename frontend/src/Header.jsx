@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
 export default function Header({ size }) {
@@ -48,13 +49,19 @@ export default function Header({ size }) {
         </div>
       )}
       {/* right part of navigation item */}
-      <div className="flex gap-2 items-center">
-        <p className="font-bold">
-          {userInfo.fname} {userInfo.lname}
-        </p>
-        <div className="p-2 bg-gray-700 rounded-full font-bold">
-          {userInfo.fname[0]}
-          {userInfo.lname[0]}
+      <div className="flex gap-8 items-center">
+        <div className="flex gap-2 items-center">
+          <p className="font-bold">
+            {userInfo.fname} {userInfo.lname}
+          </p>
+          <div className="p-2 bg-gray-700 rounded-full font-bold">
+            {userInfo.fname[0]}
+            {userInfo.lname[0]}
+          </div>
+        </div>
+        <div className="relative flex items-center justify-center">
+          <FaCartShopping className="text-4xl"/>
+          <strong className="text-red-800 absolute -top-3 text-xl">1</strong>
         </div>
       </div>
     </header>
