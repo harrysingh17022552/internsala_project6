@@ -6,6 +6,7 @@ import { ImCross } from "react-icons/im";
 import { useState } from "react";
 export default function Header({ size }) {
   const userInfo = useSelector((store) => store.userData.user);
+  const cart = useSelector((store) => store.cart.items);
   const [navToggle, setNavToggle] = useState(false);
   return (
     <header className="w-full bg-black flex gap-4 p-4 items-center justify-between overflow-scroll whitespace-nowrap noscrollbar z-40">
@@ -60,8 +61,10 @@ export default function Header({ size }) {
           </div>
         </div>
         <div className="relative flex items-center justify-center">
-          <FaCartShopping className="text-4xl text-green-500"/>
-          <p className="text-white absolute -top-3 text-xl font-extrabold">1</p>
+          <FaCartShopping className="text-4xl text-green-500" />
+          <p className="text-white absolute -top-3 text-xl font-extrabold">
+            {cart.length}
+          </p>
         </div>
       </div>
     </header>
