@@ -1,7 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useEffect, useState } from "react";
+//importing addItem action from the cartSlice
+import { addItem } from "../store/slices/cartSlice";
 export default function BookDetails() {
   // this returns the object that contain all the params that we dynamically allocated in route section
   const params = useParams();
@@ -17,6 +19,16 @@ export default function BookDetails() {
       books.filter((item) => parseInt(item.id) === parseInt(params.id))
     );
   }, [books, params]);
+
+  //function takes an parameter which is item object and using dispatch, we will add item to the cart using addItem action.
+  //also adding quantity initial value as 1
+  const dispatch = useDispatch();
+  const handleATC = (e, item) => {
+    dispatch(addItem({ ...item, quantity: 1 }));
+    e.target.textContent = "Added ✔";
+    e.target.disabled = true;
+  };
+
   //This is BookDetails Component that takes the book id from the url and then it filter that book from the books.
   return currentBook.length > 0 ? (
     currentBook.map((book) => (
@@ -38,7 +50,7 @@ export default function BookDetails() {
         {/* section that shows the book image, and book information like author, when published,  price, category,Rating & Description */}
         <div className="w-full justify-center flex flex-wrap sm:flex-nowrap gap-8">
           <img
-            className="w-full sm:w-1/3 lg:w-1/6 object-cover rounded-lg  transition-all"
+            className="w-full sm:w-1/3 lg:w-1/6 object-contain self-start rounded-lg  transition-all"
             src={book.bookimage}
             alt={book.booktitle}
             onError={(e) => {
@@ -80,6 +92,18 @@ export default function BookDetails() {
               </span>
             </p>
           </div>
+        </div>
+        {/* Adding Add to cart && Buy Now button, Buy Now will direct to make order page without adding any other item and add to cart will just item to the cart using redux */}
+        <div className="flex justify-center items-center gap-4 mt-10">
+          <button className="border shadow-[0.01px_0.01px_10px_1px_white_inset] hover:shadow-[0.01px_0.01px_15px_1px_blue_inset]">
+            Buy Now
+          </button>
+          <button
+            className="border shadow-[0.01px_0.01px_10px_1px_white_inset] hover:shadow-[0.01px_0.01px_15px_1px_green_inset]"
+            onClick={(e) => handleATC(e, book)}
+          >
+            Add to Cart
+          </button>
         </div>
       </section>
     ))
