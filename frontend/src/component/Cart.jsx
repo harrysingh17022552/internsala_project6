@@ -1,14 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { updateItem, removeItem } from "../store/slices/cartSlice";
+import { useOutletContext } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 export default function Cart() {
+  const { setPopMessage } = useOutletContext();
   const cartItem = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleUpdate = (item, type) => {
     dispatch(updateItem({ id: item.id, type }));
+    setPopMessage("Successfully Updated Item");
+  };
+  const handleDelete = (id) => {
+    dispatch(removeItem({ id }));
+    setPopMessage("Successfully Deleted Item");
   };
   const calculateTotal = () => {
     return cartItem.reduce(
@@ -89,7 +96,7 @@ export default function Cart() {
               <div className="flex justify-center items-center bg-red-500 px-4">
                 <MdDelete
                   className="text-4xl cursor-pointer"
-                  onClick={() => dispatch(removeItem({ id: item.id }))}
+                  onClick={() => handleDelete(item.id)}
                 />
               </div>
             </article>

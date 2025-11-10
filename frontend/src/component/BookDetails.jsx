@@ -1,10 +1,13 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useEffect, useState } from "react";
+
 //importing addItem action from the cartSlice
 import { addItem } from "../store/slices/cartSlice";
 export default function BookDetails() {
+  const { setPopMessage } = useOutletContext();
+
   // this returns the object that contain all the params that we dynamically allocated in route section
   const params = useParams();
   //used to navigate to the page
@@ -27,6 +30,7 @@ export default function BookDetails() {
     dispatch(addItem({ ...item, quantity: 1 }));
     e.target.textContent = "Added ✔";
     e.target.disabled = true;
+    setPopMessage("Successfully updated Item to the Cart");
   };
 
   //This is BookDetails Component that takes the book id from the url and then it filter that book from the books.

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 import BooksList from "../../utils/booklist";
 const bookSlice = createSlice({

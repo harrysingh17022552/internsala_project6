@@ -4,13 +4,12 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { FaCartShopping } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
-import PopMess from "./PopMess";
 export default function Header({ size }) {
   const userInfo = useSelector((store) => store.userData.user);
   const cart = useSelector((store) => store.cart.items);
   const [navToggle, setNavToggle] = useState(false);
   return (
-    <main className="flex flex-col">
+    <main className="relative w-full flex flex-col">
       <header className="w-full bg-black flex gap-4 p-4 items-center justify-between overflow-scroll whitespace-nowrap noscrollbar z-40">
         {/* left part of navigation item, take the screen size and adjust layout according to it. */}
         {size.width <= 720 ? (
